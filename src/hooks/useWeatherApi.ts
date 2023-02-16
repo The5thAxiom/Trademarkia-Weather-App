@@ -47,9 +47,9 @@ export interface WeatherDataErrorType {
 
 const fetchWeatherData = async (city: string) => {
     const apiKey = '8273dab588c441a3984115445231602';
-    const res = await fetch(
-        `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
-    );
+    const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+    console.log(`fetching url: ${url}`);
+    const res = await fetch(url);
     const data = await res.json();
     console.log(data);
     let weatherData: WeatherDataType | null = null;

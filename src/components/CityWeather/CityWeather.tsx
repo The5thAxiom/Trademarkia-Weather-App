@@ -7,10 +7,9 @@ import './CityWeather.css';
 
 interface CityWeatherProps {
     city: string;
-    removeCity: () => void;
 }
 
-export default function CityWeather({ city, removeCity }: CityWeatherProps) {
+export default function CityWeather({ city }: CityWeatherProps) {
     const [weatherData, setWeatherData] = useState<WeatherDataType | null>(
         null
     );
@@ -46,8 +45,6 @@ export default function CityWeather({ city, removeCity }: CityWeatherProps) {
                     Humiditiy: {weatherData.current.humidity}
                 </>
             )}
-            <br />
-            <button onClick={removeCity}>Clear</button>
         </>
     );
 }

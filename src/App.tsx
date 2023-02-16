@@ -5,6 +5,7 @@ import CityWeather from './components/CityWeather/CityWeather';
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
 import SearchBox from './components/SearchBox/SearchBox';
+import useGeolocation from './hooks/useGeolocation';
 
 export default function App() {
     const [queryParams, setQueryParams] = useSearchParams();
@@ -20,14 +21,31 @@ export default function App() {
         setQueryParams(queryParams);
     };
 
+    const { location, locationError } = useGeolocation();
+    const latLong = location
+        ? `${location.coords.latitude},${location.coords.longitude}`
+        : '';
+
     return (
         <>
             <Navbar />
+            <button onClick={() => console.log(latLong)}>show loc</button>
             <main>
-                <h1>Welcome to trademarkia!</h1>
+                <h1>Weather App!</h1>
+                {location && (
+                    <>
+                        Current location:
+                        <br />
+                        <CityWeather city={latLong} />
+                    </>
+                )}
                 <SearchBox runApiSearch={runApiSearch} />
                 {city !== '' && (
-                    <CityWeather city={city} removeCity={removeCity} />
+                    <>
+                        <CityWeather city={city} />
+                        <br />
+                        <button onClick={removeCity}>Clear</button>
+                    </>
                 )}
             </main>
             <Footer />
