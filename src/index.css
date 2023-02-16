@@ -26,7 +26,7 @@ body {
     font-family: 'Ubuntu', sans-serif;
 
     background-color: lightblue;
-    background-image: url('light-bg.jpg');
+    background-image: url('/light-bg.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
