@@ -23,6 +23,7 @@
     min-width: 300px;
     min-height: 200px;
     display: grid;
+    padding: var(--pad);
 
     row-gap: 0.5em;
     column-gap: 0.5em;
@@ -33,7 +34,8 @@
 
 .weather-card .top {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 7fr;
+    margin-bottom: 1em;
 }
 
 .weather-card .icon {
@@ -44,6 +46,12 @@
 
 .weather-card .location {
     display: grid;
+    font-size: 1.2em;
+    align-items: center;
+}
+
+.weather-card .location .name {
+    font-size: 1.5em;
 }
 
 .weather-card .info-row {
@@ -51,42 +59,20 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.weather-card .info-row button {
+    font-size: 1.2em;
+}
+
 .weather-card .temperature,
 .weather-card .wind-speed,
 .weather-card .feels-like {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    align-items: center;
-}
-
-.weather-card .humidity {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    align-items: center;
-}
-
-/*
     grid-template-columns: 1fr 1fr;
     align-items: center;
 }
 
-
-
-.weather-card .temperature,
-.weather-card .wind-speed,
-.weather-card .feels-like {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    align-items: center;
-}
-
 .weather-card .humidity {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
 }
-
-.weather-card .bottom-icons {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-} */

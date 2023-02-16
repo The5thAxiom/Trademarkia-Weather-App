@@ -43,3 +43,27 @@ input {
 button {
     cursor: pointer;
 }
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 1rem;
+    height: 1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    width: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--button-color);
+    border-radius: var(--border-rad);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--highlight-color-1);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: var(--main-blue);
+}

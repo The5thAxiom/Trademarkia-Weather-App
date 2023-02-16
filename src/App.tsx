@@ -6,6 +6,7 @@ import * as MaterialDesign from 'react-icons/md';
 
 import SearchBox from './components/SearchBox/SearchBox';
 import useGeolocation from './hooks/useGeolocation';
+import SettingsMenu from './components/SettingsMenu/SettingsMenu';
 
 export default function App() {
     const [queryParams, setQueryParams] = useSearchParams();
@@ -29,9 +30,16 @@ export default function App() {
     const [showLocationWeather, setShowLocationWeather] =
         useState<boolean>(true);
     const [showSearchBox, setShowSearchBox] = useState<boolean>(true);
+    const [showSettings, setShowSettings] = useState<boolean>(false);
 
     return (
         <>
+            {showSettings && (
+                <SettingsMenu
+                    isOpen={showSettings}
+                    setIsOpen={setShowSettings}
+                />
+            )}
             <h1>Weather App!</h1>
             <div className='icons'>
                 <button
@@ -53,6 +61,16 @@ export default function App() {
                     className={showLocationWeather ? 'active' : 'inactive'}
                 >
                     <MaterialDesign.MdMyLocation />
+                </button>
+                <button
+                    onClick={() =>
+                        showSettings
+                            ? setShowSettings(false)
+                            : setShowSettings(true)
+                    }
+                    className={showSettings ? 'active' : 'inactive'}
+                >
+                    <MaterialDesign.MdSettings />
                 </button>
             </div>
             {location && showLocationWeather && (
