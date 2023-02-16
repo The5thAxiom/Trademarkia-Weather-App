@@ -54,6 +54,19 @@ export default function CityWeather({
                 <div className='weather-card'>
                     <div className='top'>
                         <div className='icon'>{icon}</div>
+                        <button
+                            className='temp'
+                            onClick={() => {
+                                tempUnit === 'C'
+                                    ? setTempUnit('F')
+                                    : setTempUnit('C');
+                            }}
+                        >
+                            {tempUnit === 'C'
+                                ? weatherData.current.temp_c
+                                : weatherData.current.temp_f}{' '}
+                            &deg;{tempUnit}
+                        </button>
                         <div className='location'>
                             <div className='name'>
                                 {weatherData.location.name}
@@ -81,7 +94,7 @@ export default function CityWeather({
                                 {tempUnit === 'C'
                                     ? weatherData.current.temp_c
                                     : weatherData.current.temp_f}{' '}
-                                &deg; {tempUnit}
+                                &deg;{tempUnit}
                             </button>
                         </div>
                         <div className='wind-speed'>
