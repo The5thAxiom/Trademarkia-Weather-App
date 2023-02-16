@@ -44,14 +44,14 @@ export default function App() {
             {showSearchBox && <SearchBox runApiSearch={runApiSearch} />}
             {city !== '' && (
                 <CityWeather
-                    icon={<MaterialDesign.MdLocationPin />}
+                    icon={<MaterialDesign.MdSearch />}
                     city={city}
                     closeCard={removeCity}
                 />
             )}
             {location && showLocationWeather && (
                 <CityWeather
-                    icon={<MaterialDesign.MdMyLocation />}
+                    icon={<MaterialDesign.MdLocationPin />}
                     city={latLong}
                     closeCard={() => setShowLocationWeather(false)}
                 />
