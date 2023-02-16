@@ -55,7 +55,7 @@ const fetchWeatherData = async (city: string) => {
     let weatherData: WeatherDataType | null = null;
     let weatherDataError: WeatherDataErrorType | null = null;
     if (!res.ok) {
-        weatherDataError = data;
+        weatherDataError = data['error'];
     } else {
         weatherData = data;
     }
