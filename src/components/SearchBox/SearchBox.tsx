@@ -12,6 +12,7 @@ export default function SearchBox({ runApiSearch }: SearchBoxProps) {
         e.preventDefault();
         if (searchText && searchText !== '') {
             runApiSearch(searchText);
+            setSearchText('');
         }
     };
     return (

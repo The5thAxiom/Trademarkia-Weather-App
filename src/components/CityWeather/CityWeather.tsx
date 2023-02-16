@@ -1,5 +1,8 @@
-import { MouseEventHandler } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import useWeatherApi, {
+    WeatherDataErrorType,
+    WeatherDataType
+} from '../../hooks/useWeatherApi';
 import './CityWeather.css';
 
 interface CityWeatherProps {
@@ -8,12 +11,43 @@ interface CityWeatherProps {
 }
 
 export default function CityWeather({ city, removeCity }: CityWeatherProps) {
-    const navigate = useNavigate();
+    const [weatherData, setWeatherData] = useState<WeatherDataType | null>(
+        null
+    );
+    const [weatherDataError, setWeatherDataError] =
+        useState<WeatherDataErrorType | null>(null);
+
+    const { fetchWeatherData } = useWeatherApi();
+
+    useEffect(() => {
+        if (city !== null && city !== '') {
+            (async () => {
+                const { data, error } = await fetchWeatherData(city);
+                setWeatherData(data);
+                setWeatherDataError(error);
+            })();
+        }
+    }, [city, setWeatherData, setWeatherDataError, fetchWeatherData]);
+
     return (
         <>
-            Weather in {city}
+            {weatherDataError && <>Error: {weatherDataError.message}</>}
+            {weatherData && (
+                <>
+                    Weather in {weatherData.location.name},{' '}
+                    {weatherData.location.region},{' '}
+                    {weatherData.location.country} is:
+                    <br />
+                    Temperature: {weatherData.current.temp_c} degree C (feels
+                    like {weatherData.current.feelslike_c} degree C)
+                    <br />
+                    Wind Speed: {weatherData.current.wind_kph} kph
+                    <br />
+                    Humiditiy: {weatherData.current.humidity}
+                </>
+            )}
             <br />
-            <button onClick={removeCity}>back</button>
+            <button onClick={removeCity}>Clear</button>
         </>
     );
 }

@@ -7,16 +7,17 @@ import Navbar from './components/Navbar/Navbar';
 import SearchBox from './components/SearchBox/SearchBox';
 
 export default function App() {
-    const [queryParams] = useSearchParams();
+    const [queryParams, setQueryParams] = useSearchParams();
     const [city, setCity] = useState<string>(queryParams.get('city') || '');
     const runApiSearch = (city: string) => {
-        console.log(city);
         queryParams.set('city', city);
+        setQueryParams(queryParams);
         setCity(city);
     };
     const removeCity = () => {
         setCity('');
         queryParams.delete('city');
+        setQueryParams(queryParams);
     };
 
     return (
@@ -24,9 +25,8 @@ export default function App() {
             <Navbar />
             <main>
                 <h1>Welcome to trademarkia!</h1>
-                {city === '' ? (
-                    <SearchBox runApiSearch={runApiSearch} />
-                ) : (
+                <SearchBox runApiSearch={runApiSearch} />
+                {city !== '' && (
                     <CityWeather city={city} removeCity={removeCity} />
                 )}
             </main>
