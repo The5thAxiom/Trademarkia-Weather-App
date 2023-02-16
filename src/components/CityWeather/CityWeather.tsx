@@ -30,9 +30,13 @@ export default function CityWeather({ city }: CityWeatherProps) {
 
     return (
         <>
-            {weatherDataError && <>Error: {weatherDataError.message}</>}
+            {weatherDataError && (
+                <div className='weather-error-card'>
+                    Error: {weatherDataError.message}
+                </div>
+            )}
             {weatherData && (
-                <>
+                <div className='weather-card'>
                     Weather in {weatherData.location.name},{' '}
                     {weatherData.location.region},{' '}
                     {weatherData.location.country} is:
@@ -43,7 +47,7 @@ export default function CityWeather({ city }: CityWeatherProps) {
                     Wind Speed: {weatherData.current.wind_kph} kph
                     <br />
                     Humiditiy: {weatherData.current.humidity}
-                </>
+                </div>
             )}
         </>
     );

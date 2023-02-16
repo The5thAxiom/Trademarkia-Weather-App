@@ -1,12 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Engagement&family=IM+Fell+English:ital@0;1&family=Ubuntu:wght@500&display=swap');
+
 :root {
-  --bg-color: lightblue;
+    --bg-color: #2e3440;
+    --button-color: #3b4252;
+    --highlight-color-1: #5e81ac;
+    --highlight-color-2: #ebcb8b;
+    --highlight-error: #bf616a;
+    --text-color: #eceff4;
+    --footer-color: black;
 }
 
 * {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 body {
-  background-color: var(--bg-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    height: 100vh;
 }
+
+div#root {
+    display: grid;
+    grid-template-rows: 80fr 10fr;
+    height: 100vh;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5em;
+    row-gap: 1em;
+}
+
+a {
+    color: var(--highlight-color-1);
+    text-decoration: none;
+}
+
+button,
+input {
+    outline-color: transparent;
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 1em;
+    padding: 0.5em 0.9em;
+    color: var(--highlight-color-2);
+}
+
+button {
+    cursor: pointer;
+}
+

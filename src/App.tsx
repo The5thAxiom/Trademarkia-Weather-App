@@ -28,14 +28,11 @@ export default function App() {
 
     return (
         <>
-            <Navbar />
-            <button onClick={() => console.log(latLong)}>show loc</button>
             <main>
                 <h1>Weather App!</h1>
                 {location && (
                     <>
                         Current location:
-                        <br />
                         <CityWeather city={latLong} />
                     </>
                 )}
@@ -43,7 +40,6 @@ export default function App() {
                 {city !== '' && (
                     <>
                         <CityWeather city={city} />
-                        <br />
                         <button onClick={removeCity}>Clear</button>
                     </>
                 )}
