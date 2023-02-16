@@ -13,26 +13,34 @@ div#root > * {
 }
 
 h1 {
-    font-size: 3em;
-    color: var(--bg-color);
+    font-size: 4em;
+    color: purple;
+    text-shadow: 1px 1px 1px orangered, 2px 2px 2px orangered;
     margin-bottom: 1em;
+    font-family: 'Righteous', sam-serif;
+    letter-spacing: 0.2em;
 }
 
 .icons {
     position: fixed;
-    bottom: 5em;
+    bottom: 3em;
+    right: 3em;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    column-gap: 5em;
+    row-gap: 3em;
+
+    width: 5em !important;
 }
 
 .icons button {
     font-size: 1.5em;
     display: grid;
     place-items: center;
+    background-color: rgb(128, 0, 128, 70%);
 }
 
 .icons button.active {
-    color: var(--highlight-color-1);
+    color: orangered;
 }
 
