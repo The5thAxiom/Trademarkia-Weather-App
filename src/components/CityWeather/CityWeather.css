@@ -29,17 +29,18 @@
     row-gap: 0.5em;
     column-gap: 0.5em;
 
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     align-items: center;
 
     position: relative;
+
+    white-space: nowrap;
 }
 
 .weather-card .top {
     display: grid;
     grid-template-columns: 1fr 3fr 5fr 1fr;
     align-items: center;
-    white-space: nowrap;
 }
 
 .weather-card .top .temp {
@@ -97,5 +98,29 @@
 }
 
 .weather-card .info-row > * > .name {
+    font-size: 0.9em;
+}
+
+.weather-card .forecast button {
+    font-size: 1.2em;
+}
+
+.weather-card .forecast {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.weather-card .forecast > * {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.weather-card .forecast > * > .value {
+    font-size: 1.2em;
+    padding: 0;
+    background-color: transparent;
+}
+
+.weather-card .forecast > * > .name {
     font-size: 0.9em;
 }

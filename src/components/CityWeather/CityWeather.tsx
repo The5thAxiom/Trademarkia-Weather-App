@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import useWeatherApi, {
     WeatherDataErrorType,
-    WeatherDataType
+    WeatherDataType,
+    WeatherForecastDataType,
+    LocationDataType
 } from '../../hooks/useWeatherApi';
 
 import * as MaterialDesign from 'react-icons/md';
@@ -14,6 +16,13 @@ interface CityWeatherProps {
     closeCard: () => void;
 }
 
+const dateFormat = (ip: string) => {
+    const d = Date.parse(ip);
+    let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+    let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+    return `${da}-${mo}`;
+};
+
 export default function CityWeather({
     city,
     icon,
@@ -25,14 +34,23 @@ export default function CityWeather({
     const [weatherDataError, setWeatherDataError] =
         useState<WeatherDataErrorType | null>(null);
 
+    const [weatherForecastData, setWeatherForecastData] = useState<
+        WeatherForecastDataType[] | null
+    >(null);
+
+    const [location, setLocation] = useState<LocationDataType | null>(null);
+
     const { fetchWeatherData } = useWeatherApi();
 
     useEffect(() => {
         if (city !== null && city !== '') {
             (async () => {
-                const { data, error } = await fetchWeatherData(city);
+                const { location, data, forecast, error } =
+                    await fetchWeatherData(city);
                 setWeatherData(data);
                 setWeatherDataError(error);
+                setWeatherForecastData(forecast);
+                setLocation(location);
             })();
         }
     }, [city, setWeatherData, setWeatherDataError, fetchWeatherData]);
@@ -53,7 +71,7 @@ export default function CityWeather({
                     </button>
                 </div>
             )}
-            {weatherData && (
+            {weatherData && location && weatherForecastData && (
                 <div className='weather-card'>
                     <div className='top'>
                         <div className='icon'>{icon}</div>
@@ -66,17 +84,14 @@ export default function CityWeather({
                             }}
                         >
                             {tempUnit === 'C'
-                                ? weatherData.current.temp_c
-                                : weatherData.current.temp_f}{' '}
+                                ? weatherData.temp_c
+                                : weatherData.temp_f}{' '}
                             &deg;{tempUnit}
                         </button>
                         <div className='location'>
-                            <div className='name'>
-                                {weatherData.location.name}
-                            </div>
+                            <div className='name'>{location.name}</div>
                             <div className='region'>
-                                {weatherData.location.region},{' '}
-                                {weatherData.location.country}
+                                {location.region}, {location.country}
                             </div>
                         </div>
                         <button className='close' onClick={closeCard}>
@@ -95,8 +110,8 @@ export default function CityWeather({
                                 }}
                             >
                                 {tempUnit === 'C'
-                                    ? weatherData.current.feelslike_c
-                                    : weatherData.current.feelslike_f}{' '}
+                                    ? weatherData.feelslike_c
+                                    : weatherData.feelslike_f}{' '}
                                 &deg; {tempUnit}
                             </button>
                         </div>
@@ -111,8 +126,8 @@ export default function CityWeather({
                                 }}
                             >
                                 {speedUnit === 'kph'
-                                    ? weatherData.current.wind_kph
-                                    : weatherData.current.wind_mph}{' '}
+                                    ? weatherData.wind_kph
+                                    : weatherData.wind_mph}{' '}
                                 {speedUnit}
                             </button>
                         </div>
@@ -127,8 +142,8 @@ export default function CityWeather({
                                 }}
                             >
                                 {visUnit === 'km'
-                                    ? weatherData.current.vis_km
-                                    : weatherData.current.vis_miles}{' '}
+                                    ? weatherData.vis_km
+                                    : weatherData.vis_miles}{' '}
                                 {visUnit}
                             </button>
                         </div>
@@ -145,15 +160,15 @@ export default function CityWeather({
                                 }}
                             >
                                 {precipUnit === 'mm'
-                                    ? weatherData.current.precip_mm
-                                    : weatherData.current.precip_in}{' '}
+                                    ? weatherData.precip_mm
+                                    : weatherData.precip_in}{' '}
                                 {precipUnit}
                             </button>
                         </div>
                         <div className='humidity'>
                             <div className='name'>Humidity</div>
                             <button className='value'>
-                                {weatherData.current.humidity} %
+                                {weatherData.humidity} %
                             </button>
                         </div>
                         <div className='pressure'>
@@ -167,23 +182,34 @@ export default function CityWeather({
                                 }}
                             >
                                 {pressureUnit === 'mb'
-                                    ? weatherData.current.pressure_mb
-                                    : weatherData.current.pressure_in}{' '}
+                                    ? weatherData.pressure_mb
+                                    : weatherData.pressure_in}{' '}
                                 {pressureUnit}
                             </button>
                         </div>
                     </div>
-                    {/* <div className='bottom-icons'>
-                        <button>
-                            <MaterialDesign.MdArrowDropDown />
-                        </button>
-                        <button>
-                            <MaterialDesign.MdTimeline />
-                        </button>
-                        <button onClick={closeCard}>
-                            <MaterialDesign.MdClose />
-                        </button>
-                    </div> */}
+                    <div className='forecast'>
+                        {weatherForecastData.map(forecast => (
+                            <div key={forecast.date}>
+                                <div className='name'>
+                                    {dateFormat(forecast.date)}
+                                </div>
+                                <button
+                                    className='value'
+                                    onClick={() => {
+                                        tempUnit === 'C'
+                                            ? setTempUnit('F')
+                                            : setTempUnit('C');
+                                    }}
+                                >
+                                    {tempUnit === 'C'
+                                        ? forecast.day.avgtemp_c
+                                        : forecast.day.avgtemp_f}{' '}
+                                    &deg; {tempUnit}
+                                </button>
+                            </div>
+                        ))}
+                    </div>
                 </div> // card ends
             )}
         </>
