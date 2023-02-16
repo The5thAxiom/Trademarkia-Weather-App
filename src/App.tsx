@@ -40,7 +40,22 @@ export default function App() {
                     setIsOpen={setShowSettings}
                 />
             )}
-            <h1>Weather App!</h1>
+            <h1>Forecast Finder</h1>
+            {showSearchBox && <SearchBox runApiSearch={runApiSearch} />}
+            {city !== '' && (
+                <CityWeather
+                    icon={<MaterialDesign.MdLocationPin />}
+                    city={city}
+                    closeCard={removeCity}
+                />
+            )}
+            {location && showLocationWeather && (
+                <CityWeather
+                    icon={<MaterialDesign.MdMyLocation />}
+                    city={latLong}
+                    closeCard={() => setShowLocationWeather(false)}
+                />
+            )}
             <div className='icons'>
                 <button
                     onClick={() =>
@@ -73,21 +88,6 @@ export default function App() {
                     <MaterialDesign.MdSettings />
                 </button>
             </div>
-            {location && showLocationWeather && (
-                <CityWeather
-                    icon={<MaterialDesign.MdMyLocation />}
-                    city={latLong}
-                    closeCard={() => setShowLocationWeather(false)}
-                />
-            )}
-            {showSearchBox && <SearchBox runApiSearch={runApiSearch} />}
-            {city !== '' && (
-                <CityWeather
-                    icon={<MaterialDesign.MdLocationPin />}
-                    city={city}
-                    closeCard={removeCity}
-                />
-            )}
         </>
     );
 }

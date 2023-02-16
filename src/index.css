@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Engagement&family=IM+Fell+English:ital@0;1&family=Ubuntu:wght@500&display=swap');
 
 :root {
-    --bg-color: #2e3440;
+    /* --bg-color: #2e3440; */
+    --bg-color: black;
     --button-color: #3b4252;
     --highlight-color-1: #5e81ac;
     --highlight-color-2: #ebcb8b;
@@ -19,10 +20,16 @@
 }
 
 body {
-    background-color: var(--bg-color);
     color: var(--text-color);
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
+
+    background-color: lightblue;
+    background-image: url('light-bg.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 a {

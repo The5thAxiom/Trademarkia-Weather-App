@@ -14,9 +14,13 @@ div#root > * {
 
 h1 {
     font-size: 3em;
+    color: var(--bg-color);
+    margin-bottom: 1em;
 }
 
 .icons {
+    position: fixed;
+    bottom: 5em;
     display: flex;
     justify-content: center;
     column-gap: 1em;

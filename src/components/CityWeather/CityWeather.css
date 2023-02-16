@@ -4,11 +4,13 @@
     padding: var(--pad);
     border-radius: var(--border-rad);
     width: fit-content;
+    opacity: 80%;
 }
 
 .weather-card button {
     background-color: var(--bg-color);
     padding: 0.5em;
+    opacity: 100%;
 }
 
 .weather-card button:hover {
@@ -34,8 +36,16 @@
 
 .weather-card .top {
     display: grid;
-    grid-template-columns: 1fr 7fr;
+    grid-template-columns: 1fr 6fr 1fr;
     margin-bottom: 1em;
+    align-items: center;
+}
+
+.weather-card .top .close {
+    background-color: transparent;
+    font-size: 2em;
+    display: grid;
+    align-items: center;
 }
 
 .weather-card .icon {

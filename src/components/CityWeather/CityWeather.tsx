@@ -63,6 +63,9 @@ export default function CityWeather({
                                 {weatherData.location.country}
                             </div>
                         </div>
+                        <button className='close' onClick={closeCard}>
+                            <MaterialDesign.MdClose />
+                        </button>
                     </div>
                     <div className='info-row'>
                         <div className='temperature'>
@@ -118,12 +121,12 @@ export default function CityWeather({
                         <div className='humidity'>
                             <div className='name'>Humidity</div>
                             <button className='value'>
-                                {weatherData.current.humidity}
+                                {weatherData.current.humidity} %
                             </button>
                         </div>
                     </div>
                     <div></div>
-                    <div className='bottom-icons'>
+                    {/* <div className='bottom-icons'>
                         <button>
                             <MaterialDesign.MdArrowDropDown />
                         </button>
@@ -133,7 +136,7 @@ export default function CityWeather({
                         <button onClick={closeCard}>
                             <MaterialDesign.MdClose />
                         </button>
-                    </div>
+                    </div> */}
                 </div> // card ends
             )}
         </>
