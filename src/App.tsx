@@ -28,23 +28,20 @@ export default function App() {
 
     return (
         <>
-            <main>
-                <h1>Weather App!</h1>
-                {location && (
-                    <>
-                        Current location:
-                        <CityWeather city={latLong} />
-                    </>
-                )}
-                <SearchBox runApiSearch={runApiSearch} />
-                {city !== '' && (
-                    <>
-                        <CityWeather city={city} />
-                        <button onClick={removeCity}>Clear</button>
-                    </>
-                )}
-            </main>
-            <Footer />
+            <h1>Weather App!</h1>
+            {location && (
+                <>
+                    Current location:
+                    <CityWeather city={latLong} />
+                </>
+            )}
+            <SearchBox runApiSearch={runApiSearch} />
+            {city !== '' && (
+                <>
+                    <CityWeather city={city} />
+                    <button onClick={removeCity}>Clear</button>
+                </>
+            )}
         </>
     );
 }
