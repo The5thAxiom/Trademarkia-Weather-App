@@ -8,6 +8,9 @@
     --highlight-error: #bf616a;
     --text-color: #eceff4;
     --footer-color: black;
+
+    --border-rad: 0.2em;
+    --pad: 1em;
 }
 
 * {
@@ -46,13 +49,17 @@ input {
     outline-color: transparent;
     background-color: var(--button-color);
     border: none;
-    border-radius: 1em;
-    padding: 0.5em 0.9em;
+    border-radius: var(--border-rad);
+    padding: var(--pad);
     color: var(--text-color);
 }
 
 button {
     cursor: pointer;
+}
+
+h1 {
+    font-size: 3em;
 }
 
 .icons {
