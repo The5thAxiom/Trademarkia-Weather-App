@@ -39,6 +39,7 @@ export default function CityWeather({
 
     const [tempUnit, setTempUnit] = useState<'C' | 'F'>('C');
     const [speedUnit, setSpeedUnit] = useState<'kph' | 'mph'>('mph');
+    const [precipUnit, setPrecipUnit] = useState<'mm' | 'in'>('mm');
 
     return (
         <>
@@ -81,8 +82,8 @@ export default function CityWeather({
                         </button>
                     </div>
                     <div className='info-row'>
-                        <div className='temperature'>
-                            <div className='name'>Temperature</div>
+                        <div className='feels-like'>
+                            <div className='name'>Feels Like</div>
                             <button
                                 className='value'
                                 onClick={() => {
@@ -92,9 +93,9 @@ export default function CityWeather({
                                 }}
                             >
                                 {tempUnit === 'C'
-                                    ? weatherData.current.temp_c
-                                    : weatherData.current.temp_f}{' '}
-                                &deg;{tempUnit}
+                                    ? weatherData.current.feelslike_c
+                                    : weatherData.current.feelslike_f}{' '}
+                                &deg; {tempUnit}
                             </button>
                         </div>
                         <div className='wind-speed'>
@@ -116,19 +117,19 @@ export default function CityWeather({
                     </div>
                     <div className='info-row'>
                         <div className='feels-like'>
-                            <div className='name'>Feels Like</div>
+                            <div className='name'>Precipitation</div>
                             <button
                                 className='value'
                                 onClick={() => {
-                                    tempUnit === 'C'
-                                        ? setTempUnit('F')
-                                        : setTempUnit('C');
+                                    precipUnit === 'mm'
+                                        ? setPrecipUnit('in')
+                                        : setPrecipUnit('mm');
                                 }}
                             >
-                                {tempUnit === 'C'
-                                    ? weatherData.current.feelslike_c
-                                    : weatherData.current.feelslike_f}{' '}
-                                &deg; {tempUnit}
+                                {precipUnit === 'mm'
+                                    ? weatherData.current.precip_mm
+                                    : weatherData.current.precip_in}{' '}
+                                {precipUnit}
                             </button>
                         </div>
                         <div className='humidity'>

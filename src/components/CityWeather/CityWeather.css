@@ -29,7 +29,7 @@
     row-gap: 0.5em;
     column-gap: 0.5em;
 
-    grid-template-rows: 2fr 1fr 1fr 0.5fr;
+    grid-template-rows: 1fr 1fr 1fr;
     align-items: center;
 
     position: relative;
@@ -38,7 +38,6 @@
 .weather-card .top {
     display: grid;
     grid-template-columns: 1fr 3fr 5fr 1fr;
-    margin-bottom: 1em;
     align-items: center;
     white-space: nowrap;
 }
@@ -86,16 +85,17 @@
     font-size: 1.2em;
 }
 
-.weather-card .temperature,
-.weather-card .wind-speed,
-.weather-card .feels-like {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
+.weather-card .info-row > * {
+    display: flex;
+    flex-direction: column-reverse;
 }
 
-.weather-card .humidity {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
+.weather-card .info-row > * > .value {
+    font-size: 1.5em;
+    padding: 0;
+    background-color: transparent;
+}
+
+.weather-card .info-row > * > .name {
+    font-size: 0.9em;
 }
