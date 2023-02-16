@@ -46,6 +46,7 @@
     place-items: center;
     font-size: 1.2em;
     cursor: pointer;
+    color: white;
 }
 
 #settings-content a:hover,
