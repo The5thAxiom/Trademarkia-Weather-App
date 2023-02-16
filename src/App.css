@@ -23,7 +23,7 @@ h1 {
     bottom: 5em;
     display: flex;
     justify-content: center;
-    column-gap: 1em;
+    column-gap: 5em;
 }
 
 .icons button {

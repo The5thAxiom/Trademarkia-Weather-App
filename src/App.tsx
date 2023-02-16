@@ -57,7 +57,7 @@ export default function App() {
                 />
             )}
             <div className='icons'>
-                <button
+                {/* <button
                     onClick={() =>
                         showSearchBox
                             ? setShowSearchBox(false)
@@ -66,7 +66,7 @@ export default function App() {
                     className={showSearchBox ? 'active' : 'inactive'}
                 >
                     <MaterialDesign.MdSearch />
-                </button>
+                </button> */}
                 <button
                     onClick={() =>
                         showLocationWeather
