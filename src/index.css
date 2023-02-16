@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Engagement&family=IM+Fell+English:ital@0;1&family=Ubuntu:wght@500&display=swap');
+
+:root {
+    --bg-color: #2e3440;
+    --button-color: #3b4252;
+    --highlight-color-1: #5e81ac;
+    --highlight-color-2: #ebcb8b;
+    --highlight-error: #bf616a;
+    --text-color: #eceff4;
+    --footer-color: black;
+
+    --border-rad: 0.2em;
+    --pad: 1em;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+a {
+    color: var(--highlight-color-1);
+    text-decoration: none;
+}
+
+button,
+input {
+    outline-color: transparent;
+    background-color: var(--button-color);
+    border: none;
+    border-radius: var(--border-rad);
+    padding: var(--pad);
+    color: var(--text-color);
+}
+
+button {
+    cursor: pointer;
+}
