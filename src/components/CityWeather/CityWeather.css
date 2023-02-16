@@ -78,7 +78,7 @@
 
 .weather-card .info-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .weather-card .info-row button {

@@ -40,6 +40,8 @@ export default function CityWeather({
     const [tempUnit, setTempUnit] = useState<'C' | 'F'>('C');
     const [speedUnit, setSpeedUnit] = useState<'kph' | 'mph'>('mph');
     const [precipUnit, setPrecipUnit] = useState<'mm' | 'in'>('mm');
+    const [visUnit, setVisUnit] = useState<'km' | 'miles'>('km');
+    const [pressureUnit, setPressureUnit] = useState<'mb' | 'in'>('mb');
 
     return (
         <>
@@ -114,9 +116,25 @@ export default function CityWeather({
                                 {speedUnit}
                             </button>
                         </div>
+                        <div className='visibility'>
+                            <div className='name'>Visibility</div>
+                            <button
+                                className='value'
+                                onClick={() => {
+                                    visUnit === 'km'
+                                        ? setVisUnit('miles')
+                                        : setVisUnit('km');
+                                }}
+                            >
+                                {visUnit === 'km'
+                                    ? weatherData.current.vis_km
+                                    : weatherData.current.vis_miles}{' '}
+                                {visUnit}
+                            </button>
+                        </div>
                     </div>
                     <div className='info-row'>
-                        <div className='feels-like'>
+                        <div className='precipitation'>
                             <div className='name'>Precipitation</div>
                             <button
                                 className='value'
@@ -138,8 +156,23 @@ export default function CityWeather({
                                 {weatherData.current.humidity} %
                             </button>
                         </div>
+                        <div className='pressure'>
+                            <div className='name'>Pressure</div>
+                            <button
+                                className='value'
+                                onClick={() => {
+                                    pressureUnit === 'mb'
+                                        ? setPressureUnit('in')
+                                        : setPressureUnit('mb');
+                                }}
+                            >
+                                {pressureUnit === 'mb'
+                                    ? weatherData.current.pressure_mb
+                                    : weatherData.current.pressure_in}{' '}
+                                {pressureUnit}
+                            </button>
+                        </div>
                     </div>
-                    <div></div>
                     {/* <div className='bottom-icons'>
                         <button>
                             <MaterialDesign.MdArrowDropDown />
