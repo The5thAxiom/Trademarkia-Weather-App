@@ -85,7 +85,7 @@ export default function App() {
                     }
                     className={showSettings ? 'active' : 'inactive'}
                 >
-                    <MaterialDesign.MdSettings />
+                    <MaterialDesign.MdMenu />
                 </button>
             </div>
         </>

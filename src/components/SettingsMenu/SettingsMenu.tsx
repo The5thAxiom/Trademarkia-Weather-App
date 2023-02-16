@@ -13,34 +13,33 @@ export default function SettingsMenu({ isOpen, setIsOpen }: SettingsMenuProps) {
     return (
         <div id='settings'>
             <div id='settings-content'>
-                <div className='top'>
-                    <button onClick={() => setIsOpen(false)}>
-                        <MaterialDesign.MdClose />
-                    </button>
-                </div>
-                <div className='title'>Settings</div>
+                <button className='close' onClick={() => setIsOpen(false)}>
+                    <MaterialDesign.MdClose />
+                </button>
+                {/* <div className='title'>Settings</div>
                 <section>
                     <div>Temperature unit</div> <button>&deg; C</button>
                     <div>Speed unit</div> <button>&deg; kph</button>
-                </section>
-                <div className='title'>About</div>Made by Samridh Anand Paatni
+                </section> */}
+                <div className='title'>About</div>
+                <div>Made by Samridh Anand Paatni for Trademarkia</div>
                 <section>
                     <div>Website</div>
-                    <button>
+                    <OutboundLink href='https://www.samridh.live/'>
                         <SimpleIcons.SiInternetexplorer />
-                    </button>
+                    </OutboundLink>
                     <div>Github</div>
-                    <button>
+                    <OutboundLink href='https://github.com/The5thAxiom'>
                         <SimpleIcons.SiGithub />
-                    </button>
+                    </OutboundLink>
                     <div>LinkedIn</div>
-                    <button>
+                    <OutboundLink href='https://www.linkedin.com/in/samridh-anand-paatni-57a045215/'>
                         <SimpleIcons.SiLinkedin />
-                    </button>
+                    </OutboundLink>
                     <div>Instagram</div>
-                    <button>
+                    <OutboundLink href='https://www.instagram.com/'>
                         <SimpleIcons.SiInstagram />
-                    </button>
+                    </OutboundLink>
                 </section>
             </div>
         </div>

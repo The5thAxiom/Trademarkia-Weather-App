@@ -46,6 +46,7 @@ input {
     border-radius: var(--border-rad);
     padding: var(--pad);
     color: white;
+    font-size: 1em;
 }
 
 input::placeholder {
