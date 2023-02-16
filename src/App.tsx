@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './App.css';
 import CityWeather from './components/CityWeather/CityWeather';
-import Footer from './components/Footer/Footer';
-import Navbar from './components/Navbar/Navbar';
+import * as MaterialDesign from 'react-icons/md';
+
 import SearchBox from './components/SearchBox/SearchBox';
 import useGeolocation from './hooks/useGeolocation';
 
@@ -26,21 +26,49 @@ export default function App() {
         ? `${location.coords.latitude},${location.coords.longitude}`
         : '';
 
+    const [showLocationWeather, setShowLocationWeather] =
+        useState<boolean>(true);
+    const [showSearchBox, setShowSearchBox] = useState<boolean>(true);
+
     return (
         <>
             <h1>Weather App!</h1>
-            {location && (
-                <>
-                    Current location:
-                    <CityWeather city={latLong} />
-                </>
+            <div className='icons'>
+                <button
+                    onClick={() =>
+                        showSearchBox
+                            ? setShowSearchBox(false)
+                            : setShowSearchBox(true)
+                    }
+                    className={showSearchBox ? 'active' : 'inactive'}
+                >
+                    <MaterialDesign.MdSearch />
+                </button>
+                <button
+                    onClick={() =>
+                        showLocationWeather
+                            ? setShowLocationWeather(false)
+                            : setShowLocationWeather(true)
+                    }
+                    className={showLocationWeather ? 'active' : 'inactive'}
+                >
+                    <MaterialDesign.MdMyLocation />
+                </button>
+            </div>
+            {location && showLocationWeather && (
+                <CityWeather
+                    icon={<MaterialDesign.MdMyLocation />}
+                    city={latLong}
+                    closeCard={() => setShowLocationWeather(false)}
+                />
             )}
-            <SearchBox runApiSearch={runApiSearch} />
+            {showSearchBox && <SearchBox runApiSearch={runApiSearch} />}
             {city !== '' && (
-                <>
-                    <CityWeather city={city} />
-                    <button onClick={removeCity}>Clear</button>
-                </>
+                <CityWeather
+                    icon={<MaterialDesign.MdLocationPin />}
+                    city={city}
+                    closeCard={removeCity}
+                />
             )}
         </>
     );
