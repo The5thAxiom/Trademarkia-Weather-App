@@ -1,8 +1,8 @@
-# Trademarkia-Weather-App
+# Weather-App
 
 > By Samridh Anand Paatni
 
-Weather app made for Trademarkia internship task
+A small weather ReactJS app
 
 ## Overview
 
